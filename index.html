@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width" />
 <title>vdisk app</title>
 <link rel="stylesheet" href="css/vdisk.css" type="text/css" media="screen" />
@@ -46,15 +47,16 @@ function uploadPhoto(imageURI) {
 	var options = new FileUploadOptions();
 	options.fileKey="file";
 	options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
-	options.mimeType="image/jpeg";
+	options.mimeType="image/jpeg/png/jpg/gif";
 
 	//options.params = {"dir_id":"0","cover":"yes","token":"b8abaefc1086baa338ac97725cfa7f86" };
 
-	var params = new Object();
-	params.value1 = "test";
-	params.value2 = "param";
-
-	options.params = params;
+//	var params = new Object();
+//	params.value1 = "test";
+//	params.value2 = "param";
+//
+//	options.params = params;
+	options.params = {dir_id:0,cover:"yes",token:"b8abaefc1086baa338ac97725cfa7f86" };
 
 	var ft = new FileTransfer();
 	ft.upload(imageURI, "http://openapi.vdisk.me/?m=file&a=upload_share_file", win, fail, options);
@@ -64,13 +66,6 @@ function win(r) {
 	console.log("Code = " + r.responseCode);
 	console.log("Response = " + r.response);
 	console.log("Sent = " + r.bytesSent);
-
-	 navigator.notification.alert(
-            "Code = " + r.responseCode+" Response = " + r.response+" Sent = " + r.bytesSent,  // message
-            alertDismissed,         // callback
-            'Tips',            // title
-            'Done'                  // buttonName
-        );
 
 }
 
