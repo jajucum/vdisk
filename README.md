@@ -1,6 +1,7 @@
-PhoneGap-Start
----
+vdisk app 
 
-A starting point for PhoneGap apps.
+-----------
 
-To get started: fork this repo, modify the config.xml to match your details, and get building!
+for iOS,Android,Symbian,Blackberry,webOS.
+
+PowerBy PhoneGap apps
