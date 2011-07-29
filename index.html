@@ -64,6 +64,14 @@ function win(r) {
 	console.log("Code = " + r.responseCode);
 	console.log("Response = " + r.response);
 	console.log("Sent = " + r.bytesSent);
+
+	 navigator.notification.alert(
+            "Code = " + r.responseCode+" Response = " + r.response+" Sent = " + r.bytesSent,  // message
+            alertDismissed,         // callback
+            'Tips',            // title
+            'Done'                  // buttonName
+        );
+
 }
 
 function fail(error) {
