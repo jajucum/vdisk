@@ -10,18 +10,6 @@
 <body>
 <h1>vdisk app</h1>
 <h2>for iOS,Android,Symbian,Blackberry,webOS.</h2>
-<p>文件上传:仅支持10M以下的文件</p>
-
-<div class="main uploadMain">
-	<form method="post" action="http://openapi.vdisk.me/?m=file&a=upload_share_file" enctype="multipart/form-data" id="uploadForm">
-		<p><label>请选择需要上传的文件:</label><input type="file" name="filesUpload" id="filesUpload"/></p>
-		<input type="hidden" name="dir_id" value="0" id="dir_id"/>
-		<input type="hidden" name="cover" value="yes" id="cover"/>
-		<input type="text" id="token" name="token" value="b8abaefc1086baa338ac97725cfa7f86">
-		<!-- <input  type="hidden" id="callback" name="callback" value="http://vdiskchrome.sinaapp.com/callback.php"> -->
-		<p><input type="submit" value="开始上传" id="uploadSubmit"  /></p>
-	</form> 
-</div>
 
 <script type="text/javascript" charset="utf-8">
 
@@ -78,6 +66,7 @@ function fail(error) {
 
 </script>
     <h1>Example</h1>
-    <p>Upload File <button id="beginUpload">开始上传</button></p>
+    <p>Upload File</p>
+    <button id="beginUpload">begin upload</button>
 </body>
 </html>
