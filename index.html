@@ -1,63 +1,77 @@
 <!doctype html>
 <html>
-	<head>
-		<meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width" />
-		<title>Training App</title>
-		<link rel="stylesheet" href="assets/css/master.css" type="text/css" media="screen" />
-		
-		<script src="phonegap.js" type="text/javascript" charset="utf-8"></script>
-		
-		<script src="assets/js/xui.js" type="text/javascript" charset="utf-8"></script>
-		
-		<script src="assets/js/lawnchair/adaptors/LawnchairAdaptorHelpers.js" type="text/javascript" charset="utf-8"></script>
-		
-		<script src="assets/js/lawnchair/adaptors/DOMStorageAdaptor.js" type="text/javascript" charset="utf-8"></script>
-		
-		<script src="assets/js/lawnchair/adaptors/WebkitSQLiteAdaptor.js" type="text/javascript" charset="utf-8"></script>
-		
-		<script src="assets/js/lawnchair/Lawnchair.js" type="text/javascript" charset="utf-8"></script>
-		
-		<script src="assets/js/dsl.js" type="text/javascript" charset="utf-8"></script>
-		
-		<script src="assets/js/app.js" type="text/javascript" charset="utf-8"></script>
-		
-	</head>
-	<body>
- 		<div id="title_bar">Phone<strong>Gap</strong> Training App</div>
+<head>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width" />
+<title>vdisk app</title>
+<link rel="stylesheet" href="css/vdisk.css" type="text/css" media="screen" />
+<script src="phonegap.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+<h1>vdisk app</h1>
+<h2>for iOS,Android,Symbian,Blackberry,webOS.</h2>
+<p>文件上传:仅支持10M以下的文件</p>
 
-		<div id="welcome" class="view">
-		  <div class="app_button" id="map_button">Show My Location</div>
-  	      <div class="app_button" id="settings_button">Settings</div>
-		</div>
+<div class="main uploadMain">
+	<form method="post" action="http://openapi.vdisk.me/?m=file&a=upload_share_file" enctype="multipart/form-data" id="uploadForm">
+		<p><label>请选择需要上传的文件:</label><input type="file" name="filesUpload" id="filesUpload"/></p>
+		<input type="hidden" name="dir_id" value="0" id="dir_id"/>
+		<input type="hidden" name="cover" value="yes" id="cover"/>
+		<input type="text" id="token" name="token" value="b8abaefc1086baa338ac97725cfa7f86">
+		<!-- <input  type="hidden" id="callback" name="callback" value="http://vdiskchrome.sinaapp.com/callback.php"> -->
+		<p><input type="submit" value="开始上传" id="uploadSubmit"  /></p>
+	</form> 
+</div>
 
-		<div id="map" class="view">
-		  <div class="map_image">
-              <img id="static_map" src="assets/img/staticmap.png">
-		  </div>
-		  <p>This is where you are</p>
-		  <div class="app_button" id="welcome_button">Go Back</div>
-		</div>
+<script type="text/javascript" charset="utf-8">
 
-		<div id="settings" class="view">
-		  <form id="settings_form">
-		    <fieldset>
-		      <legend>Map Type</legend>
-			  <input type="radio" name="map" value="roadmap" checked>Road Map<br/>
-		      <input type="radio" name="map" value="satellite">Satellite<br/>
-		      <input type="radio" name="map" value="terrain">Terrain<br/>
-		      <input type="radio" name="map" value="hybrid">Hybrid<br/>
-		    </fieldset>
-		    <fieldset>
-		      <legend>Zoom Level</legend>
-  		      <input type="radio" name="zoom" value="10">Super Far<br/>
-  		      <input type="radio" name="zoom" value="12">Far<br/>
-  		      <input type="radio" name="zoom" value="15" checked>Normal<br/>
-  		      <input type="radio" name="zoom" value="18">Close<br/>
-  		      <input type="radio" name="zoom" value="20">Super Close<br/>
-  		     </fieldset>
-		      <button id="save_button">Save</button>
-	      </form>
-		</div>
+// Wait for PhoneGap to load
+//
+document.addEventListener("deviceready", onDeviceReady, false);
 
-	</body>
+// PhoneGap is ready
+//
+function onDeviceReady() {
+
+	// Retrieve image file location from specified source
+	navigator.camera.getPicture(uploadPhoto,
+								function(message) { alert('get picture failed'); },
+								{ quality: 50, 
+								destinationType: navigator.camera.DestinationType.FILE_URI,
+								sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY }
+								);
+
+}
+
+function uploadPhoto(imageURI) {
+	var options = new FileUploadOptions();
+	options.fileKey="file";
+	options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
+	options.mimeType="image/jpeg";
+
+	//options.params = {"dir_id":"0","cover":"yes","token":"b8abaefc1086baa338ac97725cfa7f86" };
+
+	var params = new Object();
+	params.value1 = "test";
+	params.value2 = "param";
+
+	options.params = params;
+
+	var ft = new FileTransfer();
+	ft.upload(imageURI, "http://openapi.vdisk.me/?m=file&a=upload_share_file", win, fail, options);
+}
+
+function win(r) {
+	console.log("Code = " + r.responseCode);
+	console.log("Response = " + r.response);
+	console.log("Sent = " + r.bytesSent);
+}
+
+function fail(error) {
+	alert("An error has occurred: Code = " = error.code);
+}
+
+</script>
+    <h1>Example</h1>
+    <p>Upload File</p>
+</body>
 </html>
