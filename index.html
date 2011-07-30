@@ -1,80 +1,46 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width" />
-<title>vdisk app</title>
-<link rel="stylesheet" href="jquery.mobile-1.0b1.min.css" type="text/css" charset="utf-8">
-<link rel="stylesheet" href="css/vdisk.css" type="text/css" media="screen" />
-<script type="text/javascript" charset="utf-8" src="jquery-1.6.2.min.js"></script>
-<script type="text/javascript" charset="utf-8" src="jquery.mobile-1.0b1.min.js"></script>
-<script src="phonegap.js" type="text/javascript" charset="utf-8"></script>
+<meta name="viewport" content="width=devicewidth; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+<title>微盘</title>
+<link rel="apple-touch-icon" href="iui/iui-logo-touch-icon.png" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<link rel="stylesheet" href="iui/iui.css" type="text/css" />
+<link rel="stylesheet" title="Default" href="iui/t/default/default-theme.css"  type="text/css"/>
 </head>
 <body>
-
-<div data-theme="b" data-role="page" id="main">
-	<!-- header -->
-    <div data-role="header" >
-        <h1> vdisk app </h1>
-    </div>
-    <!-- /header -->
-	 <!-- content -->
-    <div data-role="content" >
-		<p>#账号#密码#微博账号</p>
-        <!-- <p> <a href="#" id="ClickMe" data-role="button" data-inline="true" class="Bsimhei">点我</a> </p> -->
-		 <p><button id="beginUpload" class="Bsimhei">begin upload</button></p>
-    </div>
-    <!-- /content -->
-	 <!-- footer -->
-    <div data-role="footer" >
-        <h4> @vdisk 2011 </h4>
-    </div>
-    <!-- /footer -->
+<div class="toolbar">
+    <h1 id="pageTitle">微盘</h1>
 </div>
-
-<script type="text/javascript" charset="utf-8">
-
-// Wait for PhoneGap to load
-//
-document.addEventListener("deviceready", onDeviceReady, false);
-
-// PhoneGap is ready
-//
-function onDeviceReady() {
-	document.getElementById('beginUpload').onclick = function(){
-		// Retrieve image file location from specified source
-		navigator.camera.getPicture(uploadPhoto,
-			function(message) { alert('get picture failed'); },
-			{ quality: 50, 
-			destinationType: navigator.camera.DestinationType.FILE_URI,
-			sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY }
-		);	 
-	};
-}
-
-function uploadPhoto(imageURI) {
-	var options = new FileUploadOptions();
-	options.fileKey="file";
-	options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
-	options.mimeType="image/jpeg/png/jpg/gif";
-	options.params = {dir_id:0,cover:"yes",token:"b8abaefc1086baa338ac97725cfa7f86" };
-
-	var ft = new FileTransfer();
-	ft.upload(imageURI, "http://openapi.vdisk.me/?m=file&a=upload_share_file", win, fail, options);
-}
-
-function win(r) {
-//console.log
-	alert("Code = " + r.responseCode);
-	alert("Response = " + r.response);
-	alert("Sent = " + r.bytesSent);
-}
-
-function fail(error) {
-	alert("An error has occurred: Code = " = error.code);
-}
-
-</script>
-
+<form id="login" title="登录" class="panel" action="list.html" method="POST" selected="true">
+	<fieldset class="login">
+		<div class="row">
+			<div class="row_lab">
+				<label>账号</label>
+			</div>
+			<div class="row_inp">
+				<input type="text" name="movie" value="" class="inp" tabindex="1" />
+			</div>
+		</div>
+		<div class="row">
+			<div class="row_lab">
+				<label>密码</label>
+			</div>
+			<div class="row_inp">
+				<input type="text" name="movie" value="" class="inp" tabindex="2"/>
+			</div>
+		</div>
+		<div class="row">
+			<div class="row_lab">
+				<label>微博账号</label>
+			</div>
+			<div class="row_inp">
+				<input type="checkbox" name="" value="" checked class="row_che" tabindex="-1"/>
+			</div>
+		</div>
+	</fieldset>
+	<a class="whiteButton" type="submit" href="list.html" tabindex="3">登录</a>
+</form>
 </body>
 </html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=devicewidth; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+<!-- <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width" /> -->
+<title>微盘</title>
+<link rel="apple-touch-icon" href="iui/iui-logo-touch-icon.png" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<link rel="stylesheet" href="iui/iui.css" type="text/css" />
+<link rel="stylesheet" title="Default" href="iui/t/default/default-theme.css"  type="text/css"/>
+<script src="phonegap.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+<div class="toolbar">
+    <h1 id="pageTitle">文件列表</h1>
+    <a id="backButton" class="button" href="index.html">退出</a> 
+	<a class="button" id="beginUpload">上传文件</a> 
+</div>
+<ul selected="true" title="文件列表" class="list">
+	<li>
+		<a class="go"></a>
+		<a href="#">QQ</a>
+	</li>
+	<li>
+		<a class="go"></a>
+		<a href="#">baidu</a>
+	</li>
+	<li>
+		<a class="go"></a>
+		<a href="#">sina</a>
+	</li>
+</ul>
+
+<script type="text/javascript" charset="utf-8">
+
+// Wait for PhoneGap to load
+//
+document.addEventListener("deviceready", onDeviceReady, false);
+
+// PhoneGap is ready
+//
+function onDeviceReady() {
+	document.getElementById('beginUpload').onclick = function(){
+		// Retrieve image file location from specified source
+		navigator.camera.getPicture(uploadPhoto,
+			function(message) { alert('get picture failed'); },
+			{ quality: 50, 
+			destinationType: navigator.camera.DestinationType.FILE_URI,
+			sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY }
+		);	 
+	};
+}
+
+function uploadPhoto(imageURI) {
+	var options = new FileUploadOptions();
+	options.fileKey="file";
+	options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
+	options.mimeType="image/jpeg/png/jpg/gif";
+	options.params = {dir_id:0,cover:"yes",token:"b8abaefc1086baa338ac97725cfa7f86" };
+
+	var ft = new FileTransfer();
+	ft.upload(imageURI, "http://openapi.vdisk.me/?m=file&a=upload_share_file", win, fail, options);
+}
+
+function win(r) {
+//console.log
+	alert("Code = " + r.responseCode);
+	alert("Response = " + r.response);
+	alert("Sent = " + r.bytesSent);
+}
+
+function fail(error) {
+	alert("An error has occurred: Code = " = error.code);
+}
+
+</body>
+</html>
