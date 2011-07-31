@@ -189,8 +189,8 @@ function upload_file($file_path, $dir_id, $cover){
 * @获得token后处理函数
 */
 
-function get_token_callback(dataContent){
-	
+function get_token_callback(data){
+	var dataContent = data;
 	if (dataContent.err_code != 0){
 		alert(dataContent.err_code+','+dataContent.err_msg);
 		alert('您的帐号或密码有错,请重试');
@@ -218,7 +218,8 @@ function get_token_callback(dataContent){
 /**
 * @获得列表后处理函数
 */
-function get_list_callback(dataContent){
+function get_list_callback(data){
+	var dataContent = data;
 	var dataListHtml = '';
 	if (dataContent.err_code != 0){
 //	     $('#uploadTips').show().html(dataContent.err_code+','+dataContent.err_msg);
