@@ -92,7 +92,7 @@ function get_token($account,$password,$appType){
 		//handleAs : json-comment-filtered,
 		load: function(data){
 			//get_token_callback(data);
-	
+	alert(data);
 	if (data.err_code != 0){
 		alert(data.err_code+','+data.err_msg);
 		alert('您的帐号或密码有错,请重试');
