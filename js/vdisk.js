@@ -91,8 +91,32 @@ function get_token($account,$password,$appType){
 		//form: dojo.byId("loginForm"),
 		//handleAs : json-comment-filtered,
 		load: function(data){
-			get_token_callback(data);
-			//dojo.byId("divHello").innerHTML = responseText;
+			//get_token_callback(data);
+	
+	if (data.err_code != 0){
+		alert(data.err_code+','+data.err_msg);
+		alert('您的帐号或密码有错,请重试');
+//		$('.tips').show().html('您的帐号或密码有错,请重试');
+//	     $('#loginTips').show().html(data.err_code+','+data.err_msg);
+	}else{
+//		$.cookie('token',data.data.token,{expires:7,path: '/'}); 
+		alert(data.data.token);
+		window.localStorage.setItem("token", data.data.token );
+        //var keyname = window.localStorage.key(i);
+        // keyname is now equal to "key"
+		alert(token);
+        var token = window.localStorage.getItem("token");
+		 alert(token);
+
+//	    $('#loginTips').show().html(data.data.token);
+//		$('#loginTips').show().html('<span style="color:green">登录中...</span>');
+		setTimeout(gotoUpload,800);
+		function gotoUpload(){
+			window.location.href = 'list.html';
+		}
+	}			
+
+
 		},
 		error: function(response){
 			alert("Error");
@@ -226,9 +250,15 @@ function get_list_callback(data){
 		 dataListHtml='出错了!'
 	}else{
 		var dataList = dataContent.data;
-		$.each(dataList,function(i){
+		for (var i;i<dataList[i].length;i++){
 			dataListHtml+='<p><a onclick="focusOrCreateTab(\''+dataList[i].url+'\')">'+dataList[i].name+'</a></p>';
-		});
+		}
+//		$.each(dataList,function(i){
+//			dataListHtml+='<p><a onclick="focusOrCreateTab(\''+dataList[i].url+'\')">'+dataList[i].name+'</a></p>';
+//		});
 	}
-	$('.list').show().html(dataListHtml); 
+	document.getElementById('list').style.display = 'block';
+	document.getElementById('test').innerHTML = dataListHtml;
+	//$('.list').show().html(dataListHtml); 
+
 }
