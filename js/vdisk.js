@@ -190,8 +190,9 @@ function upload_file($file_path, $dir_id, $cover){
 */
 
 function get_token_callback(dataContent){
-
+	
 	if (dataContent.err_code != 0){
+		alert(dataContent.err_code+','+dataContent.err_msg);
 		alert('您的帐号或密码有错,请重试');
 //		$('.tips').show().html('您的帐号或密码有错,请重试');
 //	     $('#loginTips').show().html(dataContent.err_code+','+dataContent.err_msg);
