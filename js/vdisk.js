@@ -95,29 +95,29 @@ function get_token($account,$password,$appType){
 	alert(data);
 
 	var dataContent = data;
-
-	if (dataContent.err_code != 0){
-		alert(dataContent.err_code+','+dataContent.err_msg);
-		alert('您的帐号或密码有错,请重试');
-//		$('.tips').show().html('您的帐号或密码有错,请重试');
-//	     $('#loginTips').show().html(dataContent.err_code+','+dataContent.err_msg);
-	}else{
-//		$.cookie('token',dataContent.data.token,{expires:7,path: '/'}); 
-
-		window.localStorage.setItem("token", dataContent.data.token );
-        //var keyname = window.localStorage.key(i);
-        // keyname is now equal to "key"
-		alert(token);
-        var token = window.localStorage.getItem("token");
-		 alert(token);
-
-//	    $('#loginTips').show().html(dataContent.data.token);
-//		$('#loginTips').show().html('<span style="color:green">登录中...</span>');
-		setTimeout(gotoUpload,800);
-		function gotoUpload(){
-			window.location.href = 'list.html';
-		}
-	}
+	alert(dataContent.data.token);
+//	if (dataContent.err_code != 0){
+//		alert(dataContent.err_code+','+dataContent.err_msg);
+//		alert('您的帐号或密码有错,请重试');
+////		$('.tips').show().html('您的帐号或密码有错,请重试');
+////	     $('#loginTips').show().html(dataContent.err_code+','+dataContent.err_msg);
+//	}else{
+////		$.cookie('token',dataContent.data.token,{expires:7,path: '/'}); 
+//
+//		window.localStorage.setItem("token", dataContent.data.token );
+//        //var keyname = window.localStorage.key(i);
+//        // keyname is now equal to "key"
+//		alert(token);
+//        var token = window.localStorage.getItem("token");
+//		 alert(token);
+//
+////	    $('#loginTips').show().html(dataContent.data.token);
+////		$('#loginTips').show().html('<span style="color:green">登录中...</span>');
+//		setTimeout(gotoUpload,800);
+//		function gotoUpload(){
+//			window.location.href = 'list.html';
+//		}
+//	}
 
 
 		},
