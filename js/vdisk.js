@@ -91,7 +91,7 @@ function get_token($account,$password,$appType){
 		//form: dojo.byId("loginForm"),
 		//handleAs : json-comment-filtered,
 		load: function(data){
-			alert(data);
+			get_token_callback(data);
 			//dojo.byId("divHello").innerHTML = responseText;
 		},
 		error: function(response){
@@ -190,16 +190,26 @@ function upload_file($file_path, $dir_id, $cover){
 */
 
 function get_token_callback(dataContent){
+
 	if (dataContent.err_code != 0){
-		$('.tips').show().html('您的帐号或密码有错,请重试');
+		alert('您的帐号或密码有错,请重试');
+//		$('.tips').show().html('您的帐号或密码有错,请重试');
 //	     $('#loginTips').show().html(dataContent.err_code+','+dataContent.err_msg);
 	}else{
-		$.cookie('token',dataContent.data.token,{expires:7,path: '/'}); 
+//		$.cookie('token',dataContent.data.token,{expires:7,path: '/'}); 
+
+		window.localStorage.setItem("token", dataContent.data.token );
+        //var keyname = window.localStorage.key(i);
+        // keyname is now equal to "key"
+		alert(token);
+        var token = window.localStorage.getItem("token");
+		 alert(token);
+
 //	    $('#loginTips').show().html(dataContent.data.token);
-		$('#loginTips').show().html('<span style="color:green">登录中...</span>');
+//		$('#loginTips').show().html('<span style="color:green">登录中...</span>');
 		setTimeout(gotoUpload,800);
 		function gotoUpload(){
-			window.location.href = 'upload.html';
+			window.location.href = 'list.html';
 		}
 	}
 }
