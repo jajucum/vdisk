@@ -93,28 +93,31 @@ function get_token($account,$password,$appType){
 		load: function(data){
 			//get_token_callback(data);
 	alert(data);
-	if (data.err_code != 0){
-		alert(data.err_code+','+data.err_msg);
+
+	var dataContent = data;
+
+	if (dataContent.err_code != 0){
+		alert(dataContent.err_code+','+dataContent.err_msg);
 		alert('您的帐号或密码有错,请重试');
 //		$('.tips').show().html('您的帐号或密码有错,请重试');
-//	     $('#loginTips').show().html(data.err_code+','+data.err_msg);
+//	     $('#loginTips').show().html(dataContent.err_code+','+dataContent.err_msg);
 	}else{
-//		$.cookie('token',data.data.token,{expires:7,path: '/'}); 
-		alert(data.data.token);
-		window.localStorage.setItem("token", data.data.token );
+//		$.cookie('token',dataContent.data.token,{expires:7,path: '/'}); 
+
+		window.localStorage.setItem("token", dataContent.data.token );
         //var keyname = window.localStorage.key(i);
         // keyname is now equal to "key"
 		alert(token);
         var token = window.localStorage.getItem("token");
 		 alert(token);
 
-//	    $('#loginTips').show().html(data.data.token);
+//	    $('#loginTips').show().html(dataContent.data.token);
 //		$('#loginTips').show().html('<span style="color:green">登录中...</span>');
 		setTimeout(gotoUpload,800);
 		function gotoUpload(){
 			window.location.href = 'list.html';
 		}
-	}			
+	}
 
 
 		},
