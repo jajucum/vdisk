@@ -84,23 +84,16 @@ function get_token($account,$password,$appType){
 		time: $time,
 		signature:signatureTemp
 	};
-	var random = Math.random();
+	
 	dojo.xhrPost({
-		url: URL_GET_TOKEN+'&rand'+random,
+		url: URL_GET_TOKEN,
 		content:$param,  
 		//form: dojo.byId("loginForm"),
 		//handleAs : json-comment-filtered,
 		load: function(data){
-			//get_token_callback(data);
-	alert(random); 
-	alert(data);
-	var data = eval("("+data+")");
-	alert(data.data.token);
-	alert(data.data['token']);
-//	var dataContent = data;
-//	alert(data.data.token);
-//	alert(dataContent.data.token);
-
+			var data = eval("("+data+")");
+			get_token_callback(data);
+			//dojo.byId("divHello").innerHTML = responseText;
 		},
 		error: function(response){
 			alert("Error");
@@ -198,23 +191,22 @@ function upload_file($file_path, $dir_id, $cover){
 */
 
 function get_token_callback(data){
-	var dataContent = data;
-	if (dataContent.err_code != 0){
-		alert(dataContent.err_code+','+dataContent.err_msg);
+	if (data.err_code != 0){
+		alert(data.err_code+','+data.err_msg);
 		alert('您的帐号或密码有错,请重试');
 //		$('.tips').show().html('您的帐号或密码有错,请重试');
-//	     $('#loginTips').show().html(dataContent.err_code+','+dataContent.err_msg);
+//	     $('#loginTips').show().html(data.err_code+','+data.err_msg);
 	}else{
-//		$.cookie('token',dataContent.data.token,{expires:7,path: '/'}); 
+//		$.cookie('token',data.data.token,{expires:7,path: '/'}); 
 
-		window.localStorage.setItem("token", dataContent.data.token );
+		window.localStorage.setItem("token", data.data.token );
         //var keyname = window.localStorage.key(i);
         // keyname is now equal to "key"
 		alert(token);
         var token = window.localStorage.getItem("token");
 		 alert(token);
 
-//	    $('#loginTips').show().html(dataContent.data.token);
+//	    $('#loginTips').show().html(data.data.token);
 //		$('#loginTips').show().html('<span style="color:green">登录中...</span>');
 		setTimeout(gotoUpload,800);
 		function gotoUpload(){
@@ -241,8 +233,8 @@ function get_list_callback(data){
 //			dataListHtml+='<p><a onclick="focusOrCreateTab(\''+dataList[i].url+'\')">'+dataList[i].name+'</a></p>';
 //		});
 	}
+
 	document.getElementById('list').style.display = 'block';
-	document.getElementById('test').innerHTML = dataListHtml;
-	//$('.list').show().html(dataListHtml); 
+	$('.list').show().html(dataListHtml); 
 
 }
