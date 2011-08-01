@@ -123,8 +123,10 @@ function get_token($account,$password,$appType){
 */
 function get_list($dir_id){
 	if (!$dir_id) $dir_id=0;
+	var $token = window.localStorage.getItem("token");
+	alert('$token: '+$token);
 	var $param  = {
-		token:window.localStorage.getItem("token"),
+		token:$token,
 		dir_id:$dir_id
 	};
 	$.ajax({
