@@ -136,7 +136,7 @@ function get_list($dir_id){
 		//form: dojo.byId("loginForm"),
 		//handleAs : json-comment-filtered,
 		load: function(data){
-			var data = eval("("+data+")");
+			//var data = eval("("+data+")");
 			alert(data);
 			get_list_callback(data);
 			//dojo.byId("divHello").innerHTML = responseText;
