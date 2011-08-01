@@ -247,14 +247,13 @@ function get_list_callback(data){
 //	     $('#uploadTips').show().html(dataContent.err_code+','+dataContent.err_msg);
 		 dataListHtml='出错了!'
 	}else{
-		var dataListHtml = '';
-		var dataList = dataContent.data;
-		for (var i;i<dataList[i].length;i++){
-			dataListHtml+='<p><a onclick="focusOrCreateTab(\''+dataList[i].url+'\')">'+dataList[i].name+'</a></p>';
+		var dataListHtml='' ;
+		var dataList = dataContent.data.list;
+
+		for (var i=0;i<dataList.length;i++){
+			dataListHtml+='<p><a onclick="alert(\''+dataList[i].url+'\')">'+dataList[i].name+'</a></p>';
 		}
-//		$.each(dataList,function(i){
-//			dataListHtml+='<p><a onclick="focusOrCreateTab(\''+dataList[i].url+'\')">'+dataList[i].name+'</a></p>';
-//		});
+
 		alert(dataListHtml);
 		document.getElementById('list').style.display = 'block';
 		document.getElementById('list').innerHTML = dataListHtml;
