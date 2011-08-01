@@ -93,7 +93,8 @@ function get_token($account,$password,$appType){
 		load: function(dataContent){
 			//get_token_callback(data);
 	alert(random); 
-	alert(dataContent.data);
+	var data = eval("("+data+")");
+	alert(data.data);
 //	var dataContent = data;
 //	alert(data.data.token);
 //	alert(dataContent.data.token);
