@@ -84,14 +84,15 @@ function get_token($account,$password,$appType){
 		time: $time,
 		signature:signatureTemp
 	};
-	
+	var random = Math.random();
 	dojo.xhrPost({
-		url: URL_GET_TOKEN,
+		url: URL_GET_TOKEN+'&rand'+random,
 		content:$param,  
 		//form: dojo.byId("loginForm"),
 		//handleAs : json-comment-filtered,
 		load: function(dataContent){
 			//get_token_callback(data);
+	alert(random);
 	alert(dataContent.data);
 //	var dataContent = data;
 //	alert(data.data.token);
