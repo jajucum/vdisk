@@ -249,14 +249,14 @@ function get_list_callback(data){
 		 dataListHtml='出错了!'
 	}else{
 		var dataListHtml='' ;
-		var dataList = dataContent.data.list;
+		var dataList = dataContent.data;
 		alert('dataList: '+dataList);
 		for (var i=0;i<dataList.length;i++){
-			dataListHtml+='<p><a onclick="alert(\''+dataList[i].url+'\')">'+dataList[i].name+'</a></p>';
+			dataListHtml+='<li><a class="go"></a><a onclick="alert(\''+dataList[i].url+'\')">'+dataList[i].name+'</a></li>';
 		}
 
 		alert(dataListHtml);
-		document.getElementById('list').style.display = 'block';
+		//document.getElementById('list').style.display = 'block';
 		document.getElementById('list').innerHTML = dataListHtml;
 		//$('.list').show().html(dataListHtml); 
 
