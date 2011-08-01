@@ -95,7 +95,7 @@ function get_token($account,$password,$appType){
 	alert(random); 
 	alert(data);
 	var data = eval("("+data+")");
-	alert(data.data);
+	alert(data.data.token);
 //	var dataContent = data;
 //	alert(data.data.token);
 //	alert(dataContent.data.token);
