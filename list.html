@@ -36,6 +36,11 @@ window.onload = onDeviceReady;
 //
 function onDeviceReady() {
 	
+	document.getElementById('backButton').onclick = function(){
+		window.localStorage.removeItem("token");
+		window.location.href = 'index.html';
+	};
+
 	var token = window.localStorage.getItem("token");
 	
 	if (!token){
@@ -58,10 +63,6 @@ function onDeviceReady() {
 		);	 
 	};
 
-	document.getElementById('backButton').onclick = function(){
-		window.localStorage.removeItem("token");
-		 window.location.href = 'index.html';
-	};
 }
 
 function uploadPhoto(imageURI) {

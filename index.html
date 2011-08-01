@@ -57,7 +57,12 @@ document.addEventListener("deviceready", onDeviceReady, false);
 // PhoneGap is ready
 //
 function onDeviceReady() {
-	login();
+	if (window.localStorage.removeItem("token")){
+		window.location.href = 'list.html';
+	}else{
+		login();
+	}
+	
 }
 
 //dojo.addOnLoad(function(){
