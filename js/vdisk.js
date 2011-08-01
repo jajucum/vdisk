@@ -90,9 +90,9 @@ function get_token($account,$password,$appType){
 		content:$param,  
 		//form: dojo.byId("loginForm"),
 		//handleAs : json-comment-filtered,
-		load: function(data){
+		load: function(dataContent){
 			//get_token_callback(data);
-	alert(data.data);
+	alert(dataContent.data);
 //	var dataContent = data;
 //	alert(data.data.token);
 //	alert(dataContent.data.token);
