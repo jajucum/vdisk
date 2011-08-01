@@ -17,7 +17,7 @@
 <body>
 <div class="toolbar">
     <h1 id="pageTitle">文件列表</h1>
-    <a id="backButton" class="button" href="index.html">退出</a> \
+    <a id="backButton" class="button">退出</a> \
 	<a class="button" id="refreshFileList">刷新</a> 
 	<a class="button" id="beginUpload">上传</a> 
 </div>
@@ -56,6 +56,11 @@ function onDeviceReady() {
 			destinationType: navigator.camera.DestinationType.FILE_URI,
 			sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY }
 		);	 
+	};
+
+	document.getElementById('backButton').onclick = function(){
+		window.localStorage.removeItem("token");
+		 window.location.href = 'index.html';
 	};
 }
 
