@@ -75,10 +75,11 @@ function onDeviceReady() {
 
 function uploadPhoto(imageURI) {
 	var options = new FileUploadOptions();
+	var $token = window.localStorage.getItem("token");
 	options.fileKey="file";
 	options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
-	options.mimeType="image/jpeg/png/jpg/gif";
-	options.params = {dir_id:0,cover:"yes",token:"b8abaefc1086baa338ac97725cfa7f86" };
+	options.mimeType="image/jpeg/png/jpg/gif/doc/txt/pdf";
+	options.params = {dir_id:0,cover:"yes",token:$token };
 
 	var ft = new FileTransfer();
 	ft.upload(imageURI, "http://openapi.vdisk.me/?m=file&a=upload_share_file", win, fail, options);

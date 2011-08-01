@@ -243,14 +243,14 @@ function get_list_callback(data){
 	var data = eval("("+data+")");
 	var dataContent = data;
 	alert(dataContent);
-	alert(dataContent.data.list[0].name);
+	alert(dataContent.err_code);
 	if (dataContent.err_code != 0){
 //	     $('#uploadTips').show().html(dataContent.err_code+','+dataContent.err_msg);
 		 dataListHtml='出错了!'
 	}else{
 		var dataListHtml='' ;
 		var dataList = dataContent.data.list;
-
+		alert('dataList: '+dataList);
 		for (var i=0;i<dataList.length;i++){
 			dataListHtml+='<p><a onclick="alert(\''+dataList[i].url+'\')">'+dataList[i].name+'</a></p>';
 		}
