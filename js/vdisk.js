@@ -124,7 +124,6 @@ function get_token($account,$password,$appType){
 function get_list($dir_id){
 	if (!$dir_id) $dir_id=0;
 	var $token = window.localStorage.getItem("token");
-	alert('$token: '+$token);
 	var $param  = {
 		token:$token,
 		dir_id:$dir_id
@@ -136,27 +135,14 @@ function get_list($dir_id){
 		//form: dojo.byId("loginForm"),
 		//handleAs : json-comment-filtered,
 		load: function(data){
-			//var data = eval("("+data+")");
-			alert(data);
+			var data = eval("("+data+")");
 			get_list_callback(data);
-			//dojo.byId("divHello").innerHTML = responseText;
 		},
 		error: function(response){
 			alert("Error");
 		}
 	});
 
-//	$.ajax({
-//		url : URL_GET_LIST,
-//		type: 'post',
-//		dataType : "json",
-//		data : $param,   
-//		success : function(data){
-//			var data = eval("("+data+")");
-//			alert(data);
-//			get_list_callback(data);
-//		},
-//	});
 }
 
 
@@ -214,23 +200,11 @@ function upload_file($file_path, $dir_id, $cover){
 function get_token_callback(data){
 	if (data.err_code != 0){
 		alert(data.err_code+','+data.err_msg);
-		alert('您的帐号或密码有错,请重试');
-//		$('.tips').show().html('您的帐号或密码有错,请重试');
-//	     $('#loginTips').show().html(data.err_code+','+data.err_msg);
+		//alert('您的帐号或密码有错,请重试');
 	}else{
-//		$.cookie('token',data.data.token,{expires:7,path: '/'}); 
-
 		window.localStorage.setItem("token", data.data.token );
-        //var keyname = window.localStorage.key(i);
-        // keyname is now equal to "key"
-		alert(token);
         var token = window.localStorage.getItem("token");
-		 alert(token);
-
-//	    $('#loginTips').show().html(data.data.token);
-//		$('#loginTips').show().html('<span style="color:green">登录中...</span>');
-		setTimeout(gotoUpload,800);
-		function gotoUpload(){
+		if (token){
 			window.location.href = 'list.html';
 		}
 	}
@@ -240,13 +214,10 @@ function get_token_callback(data){
 * @获得列表后处理函数
 */
 function get_list_callback(data){
-	var data = eval("("+data+")");
 	var dataContent = data;
-	alert(dataContent);
-	alert(dataContent.err_code);
+
 	if (dataContent.err_code != 0){
-//	     $('#uploadTips').show().html(dataContent.err_code+','+dataContent.err_msg);
-		 dataListHtml='出错了!'
+		alert(data.err_code+','+data.err_msg);
 	}else{
 		var dataListHtml='' ;
 		var dataList = dataContent.data;
@@ -254,14 +225,7 @@ function get_list_callback(data){
 		for (var i=0;i<dataList.length;i++){
 			dataListHtml+='<li><a class="go"></a><a onclick="alert(\''+dataList[i].url+'\')">'+dataList[i].name+'</a></li>';
 		}
-
-		alert(dataListHtml);
-		//document.getElementById('list').style.display = 'block';
 		document.getElementById('list').innerHTML = dataListHtml;
-		//$('.list').show().html(dataListHtml); 
-
 	}
-
-	
 
 }

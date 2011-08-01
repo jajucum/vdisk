@@ -18,22 +18,10 @@
 <div class="toolbar">
     <h1 id="pageTitle">文件列表</h1>
     <a id="backButton" class="button" href="index.html">退出</a> \
-	<a class="button" id="refreshFileList">刷新列表</a> 
-	<a class="button" id="beginUpload">上传文件</a> 
+	<a class="button" id="refreshFileList">刷新</a> 
+	<a class="button" id="beginUpload">上传</a> 
 </div>
 <ul selected="true" title="文件列表" class="list" id="list">
-	<li>
-		<a class="go"></a>
-		<a href="#">QQ</a>
-	</li>
-	<li>
-		<a class="go"></a>
-		<a href="#">baidu</a>
-	</li>
-	<li>
-		<a class="go"></a>
-		<a href="#">sina</a>
-	</li>
 </ul>
 
 <script type="text/javascript" charset="utf-8">
@@ -47,9 +35,9 @@ window.onload = onDeviceReady;
 // PhoneGap is ready
 //
 function onDeviceReady() {
-	alert(22222);
+	
 	var token = window.localStorage.getItem("token");
-	alert('token: '+token);
+	
 	if (!token){
 		window.location.href = 'index.html';
 	}else{
@@ -85,9 +73,19 @@ function uploadPhoto(imageURI) {
 
 function win(r) {
 //console.log
-	alert("Code = " + r.responseCode);
-	alert("Response = " + r.response);
-	alert("Sent = " + r.bytesSent);
+//	alert("Code = " + r.responseCode);
+//	alert("Response = " + r.response);
+//	alert("Sent = " + r.bytesSent);
+
+	var data = eval("("+data+")");
+	var dataContent = data;
+
+	if (dataContent.err_code != 0){
+		alert(data.err_code+','+data.err_msg);
+	}else{
+		alert('上传成功');
+	}
+
 }
 
 function fail(error) {
