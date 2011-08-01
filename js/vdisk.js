@@ -240,9 +240,10 @@ function get_token_callback(data){
 * @获得列表后处理函数
 */
 function get_list_callback(data){
+	var data = eval("("+data+")");
 	var dataContent = data;
 	alert(dataContent);
-	
+	alert(dataContent.data.list[0].name);
 	if (dataContent.err_code != 0){
 //	     $('#uploadTips').show().html(dataContent.err_code+','+dataContent.err_msg);
 		 dataListHtml='出错了!'
