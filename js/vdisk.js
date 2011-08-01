@@ -221,7 +221,7 @@ function get_list_callback(data){
 	}else{
 		var dataListHtml='' ;
 		var dataList = dataContent.data;
-		alert('dataList: '+dataList);
+
 		for (var i=0;i<dataList.length;i++){
 			dataListHtml+='<li><a class="go"></a><a onclick="alert(\''+dataList[i].url+'\')">'+dataList[i].name+'</a></li>';
 		}

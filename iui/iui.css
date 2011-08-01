@@ -62,4 +62,4 @@ ul > li > a{display:block;margin:-8px 0 -8px -10px;padding:8px 32px 8px 10px;tex
 .list  ul  li  a{padding-left:15px;padding-right:30px;min-height:34px;line-height:34px;}
 .list li .go{display:block;position:absolute;margin:0;left:6px;top:7px;text-align:center;font-size:110%;letter-spacing:-0.07em;color:#93883F;font-weight:bold;text-decoration:none;width:36px;height:30px;padding:7px 0 0 0;background:url(shade-compact.gif) no-repeat;}
 
-#refreshFileList{right:100px;}
+#refreshFileList{right:53px;}
