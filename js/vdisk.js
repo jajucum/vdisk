@@ -124,7 +124,7 @@ function get_token($account,$password,$appType){
 function get_list($dir_id){
 	if (!$dir_id) $dir_id=0;
 	var $param  = {
-		token:$.cookie('token'),
+		token:window.localStorage.getItem("token"),
 		dir_id:$dir_id
 	};
 	$.ajax({
@@ -133,6 +133,8 @@ function get_list($dir_id){
 		dataType : "json",
 		data : $param,   
 		success : function(data){
+			var data = eval("("+data+")");
+			alert(data);
 			get_list_callback(data);
 		},
 	});

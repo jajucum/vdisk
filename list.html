@@ -47,6 +47,15 @@ document.addEventListener("deviceready", onDeviceReady, false);
 // PhoneGap is ready
 //
 function onDeviceReady() {
+
+	var token = window.localStorage.getItem("token");
+	alert('token: '+token);
+	if (!token){
+		window.location.href = 'index.html';
+	}else{
+		get_list();
+	}
+
 	document.getElementById('beginUpload').onclick = function(){
 		// Retrieve image file location from specified source
 		navigator.camera.getPicture(uploadPhoto,
