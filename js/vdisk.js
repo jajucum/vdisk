@@ -129,17 +129,34 @@ function get_list($dir_id){
 		token:$token,
 		dir_id:$dir_id
 	};
-	$.ajax({
-		url : URL_GET_LIST,
-		type: 'post',
-		dataType : "json",
-		data : $param,   
-		success : function(data){
+
+	dojo.xhrPost({
+		url: URL_GET_LIST,
+		content:$param,  
+		//form: dojo.byId("loginForm"),
+		//handleAs : json-comment-filtered,
+		load: function(data){
 			var data = eval("("+data+")");
 			alert(data);
 			get_list_callback(data);
+			//dojo.byId("divHello").innerHTML = responseText;
 		},
+		error: function(response){
+			alert("Error");
+		}
 	});
+
+//	$.ajax({
+//		url : URL_GET_LIST,
+//		type: 'post',
+//		dataType : "json",
+//		data : $param,   
+//		success : function(data){
+//			var data = eval("("+data+")");
+//			alert(data);
+//			get_list_callback(data);
+//		},
+//	});
 }
 
 
@@ -224,11 +241,13 @@ function get_token_callback(data){
 */
 function get_list_callback(data){
 	var dataContent = data;
-	var dataListHtml = '';
+	alert(dataContent);
+	
 	if (dataContent.err_code != 0){
 //	     $('#uploadTips').show().html(dataContent.err_code+','+dataContent.err_msg);
 		 dataListHtml='出错了!'
 	}else{
+		var dataListHtml = '';
 		var dataList = dataContent.data;
 		for (var i;i<dataList[i].length;i++){
 			dataListHtml+='<p><a onclick="focusOrCreateTab(\''+dataList[i].url+'\')">'+dataList[i].name+'</a></p>';
@@ -236,9 +255,13 @@ function get_list_callback(data){
 //		$.each(dataList,function(i){
 //			dataListHtml+='<p><a onclick="focusOrCreateTab(\''+dataList[i].url+'\')">'+dataList[i].name+'</a></p>';
 //		});
+		alert(dataListHtml);
+		document.getElementById('list').style.display = 'block';
+		document.getElementById('list').innerHTML = dataListHtml;
+		//$('.list').show().html(dataListHtml); 
+
 	}
 
-	document.getElementById('list').style.display = 'block';
-	$('.list').show().html(dataListHtml); 
+	
 
 }
