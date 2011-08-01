@@ -47,12 +47,16 @@ document.addEventListener("deviceready", onDeviceReady, false);
 // PhoneGap is ready
 //
 function onDeviceReady() {
-
+	alert(22222);
 	var token = window.localStorage.getItem("token");
 	alert('token: '+token);
 	if (!token){
 		window.location.href = 'index.html';
 	}else{
+		get_list();
+	}
+
+	document.getElementById('refreshFileList').onclick = function(){
 		get_list();
 	}
 
