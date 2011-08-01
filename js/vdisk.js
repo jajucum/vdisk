@@ -92,10 +92,10 @@ function get_token($account,$password,$appType){
 		//handleAs : json-comment-filtered,
 		load: function(data){
 			//get_token_callback(data);
-	alert(data);
-	var dataContent = data;
-	alert(data.data.token);
-	alert(dataContent.data.token);
+	alert(data.data);
+//	var dataContent = data;
+//	alert(data.data.token);
+//	alert(dataContent.data.token);
 
 		},
 		error: function(response){
