@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=devicewidth; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+<!-- --><meta name="viewport" content="width=devicewidth; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
  <title>微盘</title>
 <link rel="apple-touch-icon" href="images/icon.png" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -41,7 +41,7 @@
 				<label>微博账号</label>
 			</div>
 			<div class="row_inp">
-				<input type="checkbox" name="" value="" checked id="appType" class="row_che" tabindex="-1"/>
+				<input type="checkbox" name="" value="" checked class="row_che" tabindex="-1" id="appType"/>
 			</div>
 		</div>
 	</fieldset>
@@ -65,12 +65,11 @@ function onDeviceReady() {
 	
 }
 
-
 function login(){
 	dojo.connect(dojo.byId("loginSubmit"), "onclick", function(evt){
 		var $account = dojo.byId('account').value;
 		var $password = dojo.byId('password').value;
-		var $appType = document.getElementById('appType').getAttribute('checked');
+		var $appType = dojo.attr(dojo.byId('appType'), "checked");  
 		get_token($account,$password,$appType); 
 	});
 }
