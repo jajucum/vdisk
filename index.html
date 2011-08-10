@@ -2,13 +2,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<!-- --><meta name="viewport" content="width=devicewidth; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+<meta name="viewport" content="width=devicewidth; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
  <title>微盘</title>
 <link rel="apple-touch-icon" href="images/icon.png" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <link rel="stylesheet" href="iui/iui.css" type="text/css" />
 <link rel="stylesheet" href="iui/t/default/default-theme.css"  type="text/css"/>
-<!-- --> <script type="text/javascript" src="phonegap.js" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8" src="phonegap-1.0.0.js"></script>
 <script type="text/javascript" src="js/2.0.0-crypto-sha256.js" charset="utf-8"></script>
 <script type="text/javascript" src="js/2.0.0-hmac-min.js" charset="utf-8"></script>
 <script type="text/javascript" src="js/dojo.js"  charset="utf-8"></script>
@@ -41,7 +41,7 @@
 				<label>微博账号</label>
 			</div>
 			<div class="row_inp">
-				<input type="checkbox" name="" value="" checked class="row_che" tabindex="-1"/>
+				<input type="checkbox" name="" value="" checked id="appType" class="row_che" tabindex="-1"/>
 			</div>
 		</div>
 	</fieldset>
@@ -65,16 +65,12 @@ function onDeviceReady() {
 	
 }
 
-//dojo.addOnLoad(function(){
-//	login();
-//});
 
 function login(){
 	dojo.connect(dojo.byId("loginSubmit"), "onclick", function(evt){
 		var $account = dojo.byId('account').value;
 		var $password = dojo.byId('password').value;
-		var $appType = true;
-		//if ($('#appType').attr('checked')==true) $appType=true;
+		var $appType = document.getElementById('appType').getAttribute('checked');
 		get_token($account,$password,$appType); 
 	});
 }

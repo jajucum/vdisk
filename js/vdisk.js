@@ -63,8 +63,7 @@ function get_token($account,$password,$appType){
 	var $account = $account;
 	var $password = $password;
 	var $app_type=null;
-	
-	if ($appType) $app_type='sinat';
+	//if ($appType) $app_type='sinat';
 
 	var $appkey = APPKEY;
 	var $app_secret = APP_SECRET;	
@@ -85,6 +84,8 @@ function get_token($account,$password,$appType){
 		signature:signatureTemp
 	};
 	
+	if ($appType) $param.app_type='sinat';
+
 	dojo.xhrPost({
 		url: URL_GET_TOKEN,
 		content:$param,  
@@ -100,16 +101,6 @@ function get_token($account,$password,$appType){
 		}
 	});
 
-//	$.ajax({
-//		url : URL_GET_TOKEN,
-//		type: 'post',
-//		dataType : "json",
-//		data : $param,   
-//		success : function(data){
-//			get_token_callback(data);
-//		},
-//	});
-
 }
 
 /**
@@ -122,6 +113,9 @@ function get_token($account,$password,$appType){
  *
 */
 function get_list($dir_id){
+
+	loadingShow();
+
 	if (!$dir_id) $dir_id=0;
 	var $token = window.localStorage.getItem("token");
 	var $param  = {
@@ -145,49 +139,6 @@ function get_list($dir_id){
 
 }
 
-
-/**
- * TODO:上传文件(10M以下) (!!!ps chrome插件不支持直接上传,已弃用)
- *
- * @param string $file_path 本地文件真实路径
- *
- * @param int $dir_id 目录id
- *
- * @param string $cover 可选参数, yes:覆盖; no:如有重名返回错误信息
- *
- * @return array 
- *
- * @author putaoshu
- *
-*/
-function upload_file($file_path, $dir_id, $cover){
-	var $token = $.cookie('token');
-	if ($token){
-		var $param  = {
-			token: $token,
-			dir_id: $dir_id,
-			cover: $cover,
-			file: $file_path
-		};
-//		var $data;
-		$.ajax({
-			url : URL_UPLOAD_FILE,
-			type: 'post',
-			dataType : "json",
-			data : $param,   
-//			contentType:"multipart/form-data",
-			enctype: 'multipart/form-data',
-			success : function(data){
-				$.each(data,function(i){
-					$data= data[i].download_page;
-//					alert($data);
-				})
-			},
-		});	
-	}else{
-		return false;
-	}
-}
 
 
 /*  Callback vdisk api
@@ -226,6 +177,19 @@ function get_list_callback(data){
 			dataListHtml+='<li><a class="go"></a><a onclick="alert(\''+dataList[i].url+'\')">'+dataList[i].name+'</a></li>';
 		}
 		document.getElementById('list').innerHTML = dataListHtml;
+		loadingHide();
 	}
 
+}
+
+/**
+* @loading set
+*/
+
+function loadingShow(){
+	 document.getElementById('loading').style.display = 'block';
+}
+
+function loadingHide(){
+	 document.getElementById('loading').style.display = 'none';
 }

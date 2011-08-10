@@ -1,5 +1,9 @@
+ *{margin:0;padding:0;}
+
 body{margin:0;font-family:Helvetica;background:#FFFFFF;color:#000000;overflow-x:hidden;-webkit-user-select:none;-webkit-text-size-adjust:none;}
-body > *:not(.toolbar){display:none;position:absolute;margin:0;padding:0;left:0;top:45px;width:100%;height:auto;min-height:415px;-webkit-transition-duration:300ms;-webkit-transition-property:-webkit-transform;-webkit-transform:translateX(0%);}
+/*body > *:not(.toolbar){position:absolute;display:none;margin:0;padding:0;left:0;top:45px;width:100%;height:auto;min-height:415px;-webkit-transition-duration:300ms;-webkit-transition-property:-webkit-transform;-webkit-transform:translateX(0%);}
+  */
+
 body[orient="landscape"] > *:not(.toolbar){height:auto;min-height:268px;}
 body > *[selected="true"]{display:block;}
 
@@ -24,7 +28,7 @@ body > .dialog{top:0;width:100%;min-height:417px;z-index:2;background:rgba(0,0,0
 .dialog > fieldset > h1{margin:0 10px 0 10px;padding:0;font-size:20px;font-weight:bold;color:#FFFFFF;text-shadow:rgba(0,0,0,0.4) 0 -1px 0;text-align:center;}
 .dialog > fieldset > label{position:absolute;margin:16px 0 0 6px;font-size:14px;color:#999999;}
 input:not(input[type|=radio]):not(input[type|=checkbox]){box-sizing:border-box;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;width:100%;margin:8px 0 0 0;padding:6px 6px 6px 44px;font-size:16px;font-weight:normal;}
-body > .panel{box-sizing:border-box;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;padding:10px;}
+body > .panel{box-sizing:border-box;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;padding:10px;min-height:450px}
 .panel > ul,.panel > fieldset{position:relative;margin:0 0 20px 0;padding:0;background:#FFFFFF;-webkit-border-radius:10px;-moz-border-radius:10px;border:1px solid #999999;text-align:right;font-size:16px;}
 .panel > ul li,.row{position:relative;min-height:42px;border-bottom:1px solid #999999;-webkit-border-radius:0;-moz-border-radius:0;text-align:left;}
 .panel > ul li:last-child,fieldset > .row:last-child{border-bottom:none !important;}
@@ -63,3 +67,6 @@ ul > li > a{display:block;margin:-8px 0 -8px -10px;padding:8px 32px 8px 10px;tex
 .list li .go{display:block;position:absolute;margin:0;left:6px;top:7px;text-align:center;font-size:110%;letter-spacing:-0.07em;color:#93883F;font-weight:bold;text-decoration:none;width:36px;height:30px;padding:7px 0 0 0;background:url(shade-compact.gif) no-repeat;}
 
 #refreshFileList{right:53px;}
+
+#loading{height:30px;line-height:35px;text-align:center;background-color:#f1f1f1;}
+#loading img{vertical-align:middle;}

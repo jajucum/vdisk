@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <link rel="stylesheet" href="iui/iui.css" type="text/css" />
 <link rel="stylesheet" href="iui/t/default/default-theme.css"  type="text/css"/>
-<script type="text/javascript" src="phonegap.js" charset="utf-8"></script>
+<script type="text/javascript" src="phonegap-1.0.0.js" charset="utf-8"></script>
 <script type="text/javascript" src="js/2.0.0-crypto-sha256.js" charset="utf-8"></script>
 <script type="text/javascript" src="js/2.0.0-hmac-min.js" charset="utf-8"></script>
 <script type="text/javascript" src="js/dojo.js" charset="utf-8"></script>
@@ -17,10 +17,11 @@
 <body>
 <div class="toolbar">
     <h1 id="pageTitle">文件列表</h1>
-    <a id="backButton" class="button">退出</a> \
+    <a id="backButton" class="button">退出</a>
 	<a class="button" id="refreshFileList">刷新</a> 
 	<a class="button" id="beginUpload">上传</a> 
 </div>
+<div id="loading" style="display:none"><img src="images/loading.gif" /> 处理中，请稍候...</div>
 <ul selected="true" title="文件列表" class="list" id="list">
 </ul>
 
@@ -66,15 +67,18 @@ function onDeviceReady() {
 }
 
 function uploadPhoto(imageURI) {
+
+	loadingShow();
+
 	var options = new FileUploadOptions();
 	var $token = window.localStorage.getItem("token");
 	options.fileKey="file";
 	options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
-	options.mimeType="image/jpeg/png/jpg/gif/doc/txt/pdf";
+	//options.mimeType="image/jpeg/png/jpg/gif/doc/txt/pdf";
 	options.params = {dir_id:0,cover:"yes",token:$token };
 
 	var ft = new FileTransfer();
-	ft.upload(imageURI, "http://openapi.vdisk.me/?m=file&a=upload_share_file", win, fail, options);
+	ft.upload(imageURI, "http://openapi.vdisk.me/?m=file&a=upload_file", win, fail, options);
 }
 
 function win(r) {
@@ -83,13 +87,15 @@ function win(r) {
 //	alert("Response = " + r.response);
 //	alert("Sent = " + r.bytesSent);
 
-	var data = eval("("+data+")");
+	var data = eval("("+r.response+")");
 	var dataContent = data;
 
 	if (dataContent.err_code != 0){
 		alert(data.err_code+','+data.err_msg);
 	}else{
-		alert('上传成功');
+		//alert('上传成功');
+		loadingHide();
+		get_list();
 	}
 
 }
