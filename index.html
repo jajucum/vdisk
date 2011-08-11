@@ -45,41 +45,33 @@
 			</div>
 		</div>
 	</fieldset>
-	<a class="whiteButton" type="submit" tabindex="3"  id="loginSubmit" onclick="log()">登录</a>
+	<a class="whiteButton" type="submit" tabindex="3"  id="loginSubmit">登录</a>
 </div>
 
 <script type="text/javascript" charset="utf-8">
-function log(){
+
+// Wait for PhoneGap to load
+//
+document.addEventListener("deviceready", onDeviceReady, false);
+
+// PhoneGap is ready
+//
+function onDeviceReady() {
+	if (window.localStorage.removeItem("token")){
+		window.location.href = 'list.html';
+	}else{
+		login();
+	}
+}
+
+function login(){
+	dojo.connect(dojo.byId("loginSubmit"), "onclick", function(evt){
 		var $account = dojo.byId('account').value;
 		var $password = dojo.byId('password').value;
 		var $appType = dojo.attr(dojo.byId('appType'), "checked");  
-		get_token($account,$password,$appType);  
+		get_token($account,$password,$appType); 
+	});
 }
-// Wait for PhoneGap to load
-//
-//document.addEventListener("deviceready", onDeviceReady, false);
-//
-//// PhoneGap is ready
-////
-//function onDeviceReady() {
-//	if (window.localStorage.removeItem("token")){
-//		window.location.href = 'list.html';
-//	}else{
-//		login();
-//	}
-//	
-//}
-//
-//function login(){
-//	dojo.connect(dojo.byId("loginSubmit"), "onclick", function(evt){
-//		var $account = dojo.byId('account').value;
-//		var $password = dojo.byId('password').value;
-//		var $appType = dojo.attr(dojo.byId('appType'), "checked");  
-//		get_token($account,$password,$appType); 
-//	});
-//}
-
-
 </script>
 
 </body>
