@@ -2,8 +2,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<!-- --><meta name="viewport" content="width=devicewidth; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
- <title>微盘</title>
+<meta name="viewport" content="width=devicewidth; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+<title>微盘</title>
 <link rel="apple-touch-icon" href="images/icon.png" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <link rel="stylesheet" href="iui/iui.css" type="text/css" />
@@ -16,7 +16,7 @@
 </head>
 <body>
 <div class="toolbar">
-    <h1 id="pageTitle">微盘</h1>
+    <h1 id="pageTitle">微盘2</h1>
 </div>
 <div id="login" title="登录" class="panel" selected="true">
 	<fieldset class="login">
@@ -63,6 +63,8 @@ function onDeviceReady() {
 		login();
 	}
 	
+	login();
+	login2();
 }
 
 function login(){
@@ -72,6 +74,12 @@ function login(){
 		var $appType = dojo.attr(dojo.byId('appType'), "checked");  
 		get_token($account,$password,$appType); 
 	});
+}
+
+function login2(){
+	 document.getElementById('loginSubmit').onclick = function(){
+		alert(22222); 
+	 };
 }
 </script>
 
