@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <widget xmlns		= "http://www.w3.org/ns/widgets"
 	xmlns:gap	= "http://phonegap.com/ns/1.0"
-	id		= "com.putaoshu.com"
+	id		= "com.sina.vdisklite"
 	version 	= "1.0.0">
 
-	<name>vdisk</name>
+	<name>vdisklite</name>
 
 	<description>
-		vdisk app for iOS,Android,Symbian,Blackberry,webOS.
+		vdisklite for iOS,Android,Symbian,Blackberry,webOS. HomePage: http://vdisklite.sinaapp.com/
 	</description>
 
-	<author href="http://vdisk.weibo.com"
+	<author href="http://vdisklite.sinaapp.com"
 		email="putaojia@gmail.com">
 		putaojia
 	</author>

@@ -1,7 +1,7 @@
-vdisk app 
+vdisklite
 
 -----------
 
 for iOS,Android,Symbian,Blackberry,webOS.
 
-Power By PhoneGap
+HomePage: http://vdisklite.sinaapp.com/
