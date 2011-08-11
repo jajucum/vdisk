@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <link rel="stylesheet" href="iui/iui.css" type="text/css" />
 <link rel="stylesheet" href="iui/t/default/default-theme.css"  type="text/css"/>
-<script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
+<script type="text/javascript" charset="utf-8" src="phonegap-1.0.0.js"></script>
 <script type="text/javascript" src="js/2.0.0-crypto-sha256.js" charset="utf-8"></script>
 <script type="text/javascript" src="js/2.0.0-hmac-min.js" charset="utf-8"></script>
 <script type="text/javascript" src="js/dojo.js"  charset="utf-8"></script>
@@ -50,20 +50,13 @@
 
 <script type="text/javascript" charset="utf-8">
 
-window.onload = function(){
-	 document.getElementById('loginSubmit').onclick = function(){
-		alert(222); 
-	 };
-}
-
 // Wait for PhoneGap to load
 //
 document.addEventListener("deviceready", onDeviceReady2, false);
 
-function onDeviceReady2(){
-	 alert(222);
+window.onload = function(){
+	 onDeviceReady();
 }
-
 // PhoneGap is ready
 //
 function onDeviceReady() {
@@ -84,6 +77,6 @@ function login(){
 	});
 }
 </script>
-<iframe width="100%" height="200px" frameborder="0" scrolling="no" src="http://vdisklite.sinaapp.com/"></iframe>
+
 </body>
 </html>
