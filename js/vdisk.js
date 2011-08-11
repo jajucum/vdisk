@@ -174,7 +174,7 @@ function get_list_callback(data){
 		var dataList = dataContent.data;
 
 		for (var i=0;i<dataList.length;i++){
-			dataListHtml+='<li><a class="go"></a><a onclick="alert(\''+dataList[i].url+'\')">'+dataList[i].name+'</a></li>';
+			dataListHtml+='<li><a class="go"></a><a href="'+dataList[i].url+'">'+dataList[i].name+'</a></li>';
 		}
 		document.getElementById('list').innerHTML = dataListHtml;
 		loadingHide();
