@@ -16,7 +16,7 @@
 </head>
 <body>
 <div class="toolbar">
-    <h1 id="pageTitle">微盘</h1>
+    <h1 id="pageTitle">微盘2</h1>
 </div>
 <div id="login" title="登录" class="panel" selected="true">
 	<fieldset class="login">
@@ -45,7 +45,8 @@
 			</div>
 		</div>
 	</fieldset>
-	<a class="whiteButton" type="submit" tabindex="3"  id="loginSubmit">登录</a>
+	<a class="whiteButton" type="submit" tabindex="3"  id="loginSubmit1">登录</a>
+	<button class="whiteButton" type="submit" tabindex="3"  id="loginSubmit2">登录</button>
 </div>
 
 <script type="text/javascript" charset="utf-8">
@@ -56,6 +57,17 @@ document.addEventListener("deviceready", onDeviceReady2, false);
 
 window.onload = function(){
 	 onDeviceReady();
+
+	 document.getElementById('loginSubmit1').onclick = function(){
+		alert(2222); 
+	 };
+	document.getElementById('loginSubmit2').onclick = function(){
+		var $account = dojo.byId('account').value;
+		var $password = dojo.byId('password').value;
+		var $appType = dojo.attr(dojo.byId('appType'), "checked");  
+		alert($account+','+$password+','+$appType);
+		get_token($account,$password,$appType); 
+	 };
 }
 // PhoneGap is ready
 //
