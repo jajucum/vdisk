@@ -1,4 +1,4 @@
-=<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -45,7 +45,7 @@
 			</div>
 		</div>
 	</fieldset>
-	<a class="whiteButton" type="submit" tabindex="3"  id="loginSubmit" onclick="loginEvent()">登录</a>
+	<a class="whiteButton" type="submit" tabindex="3"  id="loginSubmit" onclick="login()">登录</a>
 </div>
 
 <script type="text/javascript" charset="utf-8">
@@ -54,37 +54,32 @@
 //
 document.addEventListener("deviceready", onDeviceReady, false);
 
-//window.onload = onDeviceReady;
+//dom ready
+window.onload = function(){
+	domready();
+};
 
-// PhoneGap is ready
-//
-function onDeviceReady() {
-	if (window.localStorage.getItem("token")){
-		window.location.href = 'list.html';
-	}else{
-		login();
-	}
-
-	//test camera
-    pictureSource=navigator.camera.PictureSourceType;
-	destinationType=navigator.camera.DestinationType;
-
+function domready(){
+	if (window.localStorage.getItem("token")) window.location.href = 'list.html'; 
 }
 
 function login(){
-	dojo.connect(dojo.byId("loginSubmit"), "onclick", function(evt){
-		loginEvent();
-	});
-}
-
-function loginEvent(){
 	var $account = dojo.byId('account').value;
 	var $password = dojo.byId('password').value;
 	var $appType = dojo.attr(dojo.byId('appType'), "checked");  
 	get_token($account,$password,$appType); 
 }
 
-//test camera
+	// PhoneGap is ready
+	//
+	function onDeviceReady() {
+
+		//test camera
+		pictureSource=navigator.camera.PictureSourceType;
+		destinationType=navigator.camera.DestinationType;
+
+	}
+	//test camera
 
 
     // Called when a photo is successfully retrieved
