@@ -29,9 +29,9 @@
 
 // Wait for PhoneGap to load
 //
-//document.addEventListener("deviceready", onDeviceReady, false);
+document.addEventListener("deviceready", onDeviceReady, false);
 
-window.onload = onDeviceReady;
+//window.onload = onDeviceReady;
 
 // PhoneGap is ready
 //
@@ -74,7 +74,7 @@ function uploadPhoto(imageURI) {
 	var $token = window.localStorage.getItem("token");
 	options.fileKey="file";
 	options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
-	//options.mimeType="image/jpeg/png/jpg/gif/doc/txt/pdf";
+	options.mimeType="image/jpeg/png/jpg/gif/doc/txt/pdf";
 	options.params = {dir_id:0,cover:"yes",token:$token };
 
 	var ft = new FileTransfer();
