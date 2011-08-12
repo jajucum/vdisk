@@ -17,9 +17,9 @@
 <body>
 <div class="toolbar">
     <h1 id="pageTitle">文件列表</h1>
-    <a id="backButton" class="button">退出</a>
-	<a class="button" id="refreshFileList">刷新</a> 
-	<a class="button" id="beginUpload">上传</a> 
+    <a id="backButton" class="button" onclick="logout();">退出</a>
+	<a class="button" id="refreshFileList" onclick="get_list();">刷新</a> 
+	<a class="button" id="beginUpload" onclick="getCameraPicture();">上传</a> 
 </div>
 <div id="loading" style="display:none"><img src="images/loading.gif" /> 处理中，请稍候...</div>
 <ul selected="true" title="文件列表" class="list" id="list">
@@ -31,17 +31,12 @@
 //
 document.addEventListener("deviceready", onDeviceReady, false);
 
-//window.onload = onDeviceReady;
+//dom ready
+window.onload = function(){
+	domready();
+};
 
-// PhoneGap is ready
-//
-function onDeviceReady() {
-	
-	document.getElementById('backButton').onclick = function(){
-		window.localStorage.removeItem("token");
-		window.location.href = 'index.html';
-	};
-
+function domready(){
 	var token = window.localStorage.getItem("token");
 	
 	if (!token){
@@ -49,22 +44,33 @@ function onDeviceReady() {
 	}else{
 		get_list();
 	}
+}
 
-	document.getElementById('refreshFileList').onclick = function(){
-		get_list();
-	}
+//logout system
+function logout(){
+	window.localStorage.removeItem("token");
+	window.location.href = 'index.html'; 
+}
 
-	document.getElementById('beginUpload').onclick = function(){
-		// Retrieve image file location from specified source
-		navigator.camera.getPicture(uploadPhoto,
+
+
+// PhoneGap is ready
+//
+function onDeviceReady() {
+	getCameraPicture()
+}
+
+
+function getCameraPicture(){
+	// Retrieve image file location from specified source
+	navigator.camera.getPicture(uploadPhoto,
 			function(message) { alert('get picture failed'); },
 			{ quality: 50, 
 			destinationType: navigator.camera.DestinationType.FILE_URI,
 			sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY }
-		);	 
-	};
-
+	);	 
 }
+
 
 function uploadPhoto(imageURI) {
 
@@ -82,7 +88,7 @@ function uploadPhoto(imageURI) {
 }
 
 function win(r) {
-//console.log
+
 //	alert("Code = " + r.responseCode);
 //	alert("Response = " + r.response);
 //	alert("Sent = " + r.bytesSent);
@@ -93,7 +99,6 @@ function win(r) {
 	if (dataContent.err_code != 0){
 		alert(data.err_code+','+data.err_msg);
 	}else{
-		//alert('上传成功');
 		loadingHide();
 		get_list();
 	}
